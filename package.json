@@ -1,0 +1,26 @@
+{
+  "name": "game-shooter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel watch index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JutJut/game-shooter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JutJut/game-shooter/issues"
+  },
+  "homepage": "https://github.com/JutJut/game-shooter#readme",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "phaser": "^3.23.0"
+  }
+}
