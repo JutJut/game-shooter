@@ -2,10 +2,9 @@
   "name": "game-shooter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "parcel watch index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel serve watch index.html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,8 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "http-server": "^0.12.3",
+    "parcel-bundler": "^1.12.4",
     "phaser": "^3.23.0"
   }
 }
