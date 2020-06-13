@@ -94,7 +94,7 @@ export default class GameScene extends Phaser.Scene {
         {
           this.player.setVelocityY(-230);                       
         } 
-        if (cursors.shift.isDown) // Jump all day long
+        if (cursors.shift.isDown) // Sprint
         {
           if(cursors.left.isDown){
             this.player.setVelocityX(-500); 
