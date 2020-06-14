@@ -11,16 +11,10 @@ export default class MenuScene extends Phaser.Scene {
     });
   }
 
-  preload(){
-
-  }
-
-  create(){
-    this.startButton = this.add.text(100, 100, 'Start the game', { fill: '#0f0' }).setInteractive();   
-    this.startButton.on('pointerdown', () => { console.log('pointerover'); });
-  }
-
-  update(){
-
+  create() {
+    this.startButton = this.add.text(100, 100, 'Start the game', { fill: '#0f0' }).setInteractive();
+    this.startButton.on('pointerdown', () => {
+      console.log('pointerover');
+    });
   }
 }
