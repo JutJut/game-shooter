@@ -1,12 +1,13 @@
 import Phaser from 'phaser';
 
 import GameScene from './src/scenes/game';
+import LoadScene from './src/scenes/load';
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  scene: [GameScene],
+  width: screen.width,
+  height: screen.height,
+  scene: [LoadScene, GameScene ],
   backgroundColor: '#2d2d2d',
   physics: {
     default: 'arcade',
