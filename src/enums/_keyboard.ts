@@ -3,7 +3,8 @@ export const movementKeys = {
     D: 'D',
     W: 'W',
     S: 'S',
-    SHIFT: 'SHIFT'    
+    SHIFT: 'SHIFT',
+    SPACE: 'SPACE'
 }
 
 export const jumpProperties = {

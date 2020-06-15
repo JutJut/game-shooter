@@ -12,7 +12,14 @@ export default class GameScene extends Phaser.Scene {
   steammanIdle: Phaser.GameObjects.Sprite;
   keyboardInputs;
   didPressJump;
-  onTheGround;
+  onTheGround;  
+  canFlash;
+  canFlashTimeout;
+  flashProgress;
+  graphics: Phaser.GameObjects.Graphics;
+  newGraphics: Phaser.GameObjects.Graphics;
+  progressBar;
+  progressBarFill;
 
   constructor() {
     super({
@@ -30,17 +37,35 @@ export default class GameScene extends Phaser.Scene {
     this.backgroundImage = this.add.image(2400, 1199, 'space').setScale(2).setRotation(9.425);
 
     this.platforms = this.physics.add.staticGroup();
-    this.platforms.create(50, 250, 'grass');
-    this.platforms.create(155, 250, 'grass');
-    this.platforms.create(260, 250, 'grass');
-    this.platforms.create(420, 350, 'grass');
-    this.platforms.create(525, 350, 'grass');
-    this.platforms.create(635, 250, 'grass');
-    this.platforms.create(740, 250, 'grass');
+    // this.platforms.create(50, 250, 'grass');
+    // this.platforms.create(155, 250, 'grass');
+    // this.platforms.create(260, 250, 'grass');
+    // this.platforms.create(420, 350, 'grass');
+    // this.platforms.create(525, 350, 'grass');
+    // this.platforms.create(635, 250, 'grass');
+    // this.platforms.create(740, 250, 'grass');
+
+    var t = 0;    
+    for(var i = 0; i <40; i++){
+      t += 105;
+      this.platforms.create(t, 350, 'grass');
+    }
+    var v2 = 0;
+    for(var i = 0; i < 40; i++){
+      v2 += 105;
+      this.platforms.create(v2, 650, 'grass');
+    }
+
+    this.platforms.create(360, 270, 'grass');
+    this.platforms.create(760, 270, 'grass');
+
+    this.platforms.create(1200, 400, 'grass');
+    this.platforms.create(1700, 400, 'grass');
+
 
     // PLAYER AND ANIMATIONS
     this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
-    // this.player.setBounce(1);
+    this.player.setBounce(0.35);
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
     this.physics.add.collider(this.player, this.platforms);
@@ -75,8 +100,17 @@ export default class GameScene extends Phaser.Scene {
 
     //Other necessary logic
     this.onTheGround = this.player.body.touching.down;
-  }
 
+    this.canFlash = true;
+    this.canFlashTimeout = 5000;
+
+    this.cameras.main.startFollow(this.player);
+    
+    this.graphics = this.add.graphics();
+    this.newGraphics = this.add.graphics();
+    this.progressBar = new Phaser.Geom.Rectangle(this.player.x-60, this.player.y+270, 100, 10);
+    this.progressBarFill = new Phaser.Geom.Rectangle(this.player.x-60, this.player.y+270, 100, 10);   
+  }
   update() {
     this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);
 
@@ -121,5 +155,32 @@ export default class GameScene extends Phaser.Scene {
         jumpProperties.CAN_JUMP = false;
       }
     }
+
+    if(this.keyboardInputs.SPACE.isDown){
+
+      this.graphics.x = this.player.x-250;
+      this.newGraphics.x = this.player.x-250;
+      this.graphics.y = this.player.y-280;
+      this.newGraphics.y = this.player.y-280;
+      
+      this.graphics.fillStyle(0xffffff, 1);
+      this.graphics.fillRectShape(this.progressBar);
+      this.newGraphics.fillStyle(0x3587e2, 1);
+      this.newGraphics.fillRectShape(this.progressBarFill);
+
+    }
+    if(this.keyboardInputs.SPACE.isUp){
+      this.graphics.clear();
+      this.newGraphics.clear();
+    }
+               
+    // if (this.keyboardInputs.A.isDown && Phaser.Input.Keyboard.JustDown(this.keyboardInputs.S) && this.canFlash) {       
+      // this.player.setVelocityX(-20000);
+      // this.canFlash = false;
+      // setTimeout(() => {
+        // this.canFlash = true;
+      // }, this.canFlashTimeout); 
+      // console.log(this.canFlashTimeout);    
+    // }
   }
 }
