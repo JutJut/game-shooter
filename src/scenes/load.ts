@@ -1,4 +1,4 @@
-import { OurScenes } from './_scenes';
+import { OurScenes } from '../enums/_scenes';
 
 export default class LoadScene extends Phaser.Scene {
   startText: Phaser.GameObjects.Text;
@@ -27,6 +27,7 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet('steamman_idle', 'assets/SteamMan/SteamMan_idle.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('steamman_walk', 'assets/SteamMan/SteamMan_walk.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('steamman_run', 'assets/SteamMan/SteamMan_run.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('steamman_jump', 'assets/SteamMan/SteamMan_jump.png', { frameWidth: 48, frameHeight: 48 });
 
     // LoadingBar
     const graphics = this.add.graphics();
