@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "parcel serve watch index.html",
+    "deploy": "parcel build index.html",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
