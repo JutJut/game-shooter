@@ -21,8 +21,8 @@ export default class LoadScene extends Phaser.Scene {
 
   preload() {
     // Preload Assets
-    this.load.image('space', './assets/backgrounds/background_space_1.png');
-    this.load.image('grass', './assets/tiles/grass_tile.png');
+    this.load.image('space', 'assets/backgrounds/background_space_1.png');
+    this.load.image('grass', 'assets/tiles/grass_tile.png');
 
     this.load.spritesheet('steamman_idle', 'assets/SteamMan/SteamMan_idle.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('steamman_walk', 'assets/SteamMan/SteamMan_walk.png', { frameWidth: 48, frameHeight: 48 });

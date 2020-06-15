@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "parcel serve watch index.html",
-    "deploy": "parcel build index.html",
+    "deploy": "parcel build index.html --public-url ./",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/JutJut/game-shooter#readme",
   "devDependencies": {
+    "parcel-plugin-clean-dist": "0.0.6",
     "parcel-plugin-static-files-copy": "^2.4.3",
     "prettier": "2.0.5",
     "typescript": "^3.9.5"

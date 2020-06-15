@@ -1,5 +1,8 @@
+import {
+    jumpProperties,
+    movementKeys,
+} from '../enums/_keyboard';
 import { OurScenes } from '../enums/_scenes';
-import { movementKeys, jumpProperties } from '../enums/_keyboard';
 
 export default class GameScene extends Phaser.Scene {
   backgroundImage: Phaser.GameObjects.Image;
@@ -7,8 +10,8 @@ export default class GameScene extends Phaser.Scene {
   platforms;
   player;
   steammanIdle: Phaser.GameObjects.Sprite;
-  keyboardInputs; 
-  didPressJump; 
+  keyboardInputs;
+  didPressJump;
   onTheGround;
 
   constructor() {
@@ -18,7 +21,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-
     // IMAGES | TILES
     this.backgroundImage = this.add.image(0, 0, 'space').setScale(2);
     this.backgroundImage = this.add.image(1200, 0, 'space').setScale(2);
@@ -68,24 +70,23 @@ export default class GameScene extends Phaser.Scene {
       repeat: -1,
     });
     //Defaults when player is not moving
-    this.player.play('IDLE');    
-    this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);  
+    this.player.play('IDLE');
+    this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);
 
     //Other necessary logic
-    this.onTheGround = this.player.body.touching.down;  
-   
+    this.onTheGround = this.player.body.touching.down;
   }
 
-  update() {   
-    this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);   
-    
-    if(this.player.body.touching.down){
+  update() {
+    this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);
+
+    if (this.player.body.touching.down) {
       jumpProperties.JUMP_COUNTER = 0;
-      jumpProperties.CAN_JUMP = true;    
+      jumpProperties.CAN_JUMP = true;
     }
-    
-    if(Math.abs(this.player.body.velocity.x) < 1 && Math.abs(this.player.body.velocity.y) < 1) {
-      this.player.anims.play('IDLE', true);        
+
+    if (Math.abs(this.player.body.velocity.x) < 1 && Math.abs(this.player.body.velocity.y) < 1) {
+      this.player.anims.play('IDLE', true);
     }
 
     if (this.keyboardInputs.D.isDown) {
@@ -97,8 +98,7 @@ export default class GameScene extends Phaser.Scene {
         this.player.anims.play('WALK', true);
         this.player.setVelocityX(120);
       }
-    }
-    else{
+    } else {
       this.player.setVelocityX(0); //Idk why the fuck this works the way it works
     }
 
@@ -111,18 +111,15 @@ export default class GameScene extends Phaser.Scene {
         this.player.anims.play('WALK', true);
         this.player.setVelocityX(-120);
       }
-    }   
-     
-    if (this.didPressJump && jumpProperties.CAN_JUMP) {      
+    }
+
+    if (this.didPressJump && jumpProperties.CAN_JUMP) {
       this.player.anims.play('JUMP', true);
-      this.player.setVelocityY(-350);       
-        jumpProperties.JUMP_COUNTER++;        
-        if(jumpProperties.JUMP_COUNTER == 2){
-          jumpProperties.CAN_JUMP = false         
-        }         
-      }       
-
-    }       
-
+      this.player.setVelocityY(-350);
+      jumpProperties.JUMP_COUNTER++;
+      if (jumpProperties.JUMP_COUNTER == 2) {
+        jumpProperties.CAN_JUMP = false;
+      }
+    }
   }
 }
