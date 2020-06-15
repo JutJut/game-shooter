@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "parcel serve watch index.html"
+    "start": "parcel serve watch index.html",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -24,10 +26,12 @@
   "dependencies": {
     "http-server": "^0.12.3",
     "parcel-bundler": "^1.12.4",
-    "phaser": "^3.23.0"
+    "phaser": "^3.23.0",
+    "snyk": "^1.341.1"
   },
   "staticFiles": {
     "staticPath": "public",
     "watcherGlob": "**"
-  }
+  },
+  "snyk": true
 }
