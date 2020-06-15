@@ -115,8 +115,7 @@ export default class GameScene extends Phaser.Scene {
      
     if (this.didPressJump && jumpProperties.CAN_JUMP) {      
       this.player.anims.play('JUMP', true);
-      if (this.keyboardInputs.SHIFT.isDown) {
-        this.player.anims.play('RUN', true);
+      if (this.keyboardInputs.SHIFT.isDown) {        
         this.player.setVelocityX(-160);
         jumpProperties.JUMP_COUNTER++;
         this.player.setVelocityY(-350);
