@@ -28,6 +28,9 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet('steamman_walk', './assets/SteamMan/SteamMan_walk.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('steamman_run', './assets/SteamMan/SteamMan_run.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('steamman_jump', './assets/SteamMan/SteamMan_jump.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('robo_idle', './assets/robo/robo_idle.png', { frameWidth: 137, frameHeight:140 });
+    this.load.spritesheet('robo_idle2', './assets/robo/robo_idle2.png', { frameWidth: 137, frameHeight:140 });
+    this.load.spritesheet('robo_walk', './assets/robo/robo_walk.png', { frameWidth: 137, frameHeight: 140 });
 
     // LoadingBar
     const graphics = this.add.graphics();
