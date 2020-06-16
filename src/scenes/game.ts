@@ -69,7 +69,7 @@ export default class GameScene extends Phaser.Scene {
 
 
     // PLAYER AND ANIMATIONS
-    this.player = this.physics.add.sprite((this.game.config.width / 2) , 50, 'robo_idle'); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
+    this.player = this.physics.add.sprite((this.game.config.width / 2) , 50, 'robo_idle').setScale(0.3); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
     this.player.setBounce(0.35);
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
