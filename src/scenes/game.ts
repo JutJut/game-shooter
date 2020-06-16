@@ -112,10 +112,9 @@ export default class GameScene extends Phaser.Scene {
     this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);
 
     //Other necessary logic
-    this.onTheGround = this.player.body.touching.down;
-
-    this.canFlash = true;
-    this.canFlashTimeout = 5000;
+    // this.onTheGround = this.player.body.touching.down;
+    // this.canFlash = true;
+    // this.canFlashTimeout = 5000;
 
     this.cameras.main.startFollow(this.player);
     
