@@ -2,12 +2,19 @@ import Phaser from 'phaser';
 
 import GameScene from './src/scenes/game';
 import LoadScene from './src/scenes/load';
+import StartMenuScene from './src/scenes/menu';
 
 const config = {
   type: Phaser.AUTO,
-  width: 1500,
-  height: 1000,
-  scene: [LoadScene, GameScene],
+  scale: {
+    width:1500,
+    height: 800,
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+  // width: 1500,
+  // height: 1000,
+  scene: [LoadScene, StartMenuScene, GameScene],
   backgroundColor: '#2d2d2d',
   physics: {
     default: 'arcade',
@@ -31,3 +38,4 @@ const config = {
 };
 
 var game = new Phaser.Game(config);
+

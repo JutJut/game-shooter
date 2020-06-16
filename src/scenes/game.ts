@@ -4,7 +4,6 @@ import {
 } from '../enums/_keyboard';
 import { OurScenes } from '../enums/_scenes';
 import { KeyboardServices } from '../services/keyboardServices';
-import { World } from 'matter';
 
 export default class GameScene extends Phaser.Scene {
   backgroundImage: Phaser.GameObjects.Image;
@@ -38,22 +37,8 @@ export default class GameScene extends Phaser.Scene {
 
     this.keyboardServices = new KeyboardServices(this.input);
     // IMAGES | TILES
-    this.backgroundImage = this.add.image(0, 0, 'space').setScale(2);
-    this.backgroundImage = this.add.image(1200, 0, 'space').setScale(2);
-    this.backgroundImage = this.add.image(2400, 0, 'space').setScale(2);
-    this.backgroundImage = this.add.image(0, 1199, 'space').setScale(2).setRotation(9.425);
-    this.backgroundImage = this.add.image(1200, 1199, 'space').setScale(2).setRotation(9.425);
-    this.backgroundImage = this.add.image(2400, 1199, 'space').setScale(2).setRotation(9.425);
-    console.log(this.game.config.physics.arcade.x);
-
-    this.platforms = this.physics.add.staticGroup();
-    // this.platforms.create(50, 250, 'grass');
-    // this.platforms.create(155, 250, 'grass');
-    // this.platforms.create(260, 250, 'grass');
-    // this.platforms.create(420, 350, 'grass');
-    // this.platforms.create(525, 350, 'grass');
-    // this.platforms.create(635, 250, 'grass');
-    // this.platforms.create(740, 250, 'grass');
+    this.backgroundImage = this.add.image(0, 0, 'dark_forrest').setScale(2);
+    this.platforms = this.physics.add.staticGroup();   
 
     var t = 0;    
     for(var i = 0; i <40; i++){
