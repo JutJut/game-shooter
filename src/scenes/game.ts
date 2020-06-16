@@ -4,6 +4,7 @@ import {
 } from '../enums/_keyboard';
 import { OurScenes } from '../enums/_scenes';
 import { KeyboardServices } from '../services/keyboardServices';
+import { World } from 'matter';
 
 export default class GameScene extends Phaser.Scene {
   backgroundImage: Phaser.GameObjects.Image;
@@ -32,6 +33,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+
+    // this.matter.world = new World();
+
     this.keyboardServices = new KeyboardServices(this.input);
     // IMAGES | TILES
     this.backgroundImage = this.add.image(0, 0, 'space').setScale(2);
@@ -40,6 +44,7 @@ export default class GameScene extends Phaser.Scene {
     this.backgroundImage = this.add.image(0, 1199, 'space').setScale(2).setRotation(9.425);
     this.backgroundImage = this.add.image(1200, 1199, 'space').setScale(2).setRotation(9.425);
     this.backgroundImage = this.add.image(2400, 1199, 'space').setScale(2).setRotation(9.425);
+    console.log(this.game.config.physics.arcade.x);
 
     this.platforms = this.physics.add.staticGroup();
     // this.platforms.create(50, 250, 'grass');
@@ -67,10 +72,10 @@ export default class GameScene extends Phaser.Scene {
     this.platforms.create(1200, 400, 'grass');
     this.platforms.create(1700, 400, 'grass');
 
-
+    
     // PLAYER AND ANIMATIONS
-    this.player = this.physics.add.sprite((this.game.config.width / 2) , 50, 'robo_idle').setScale(0.3); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
-    this.player.setBounce(0.35);
+    this.player = this.physics.add.sprite((1500 / 2) , 50, 'robo_idle').setScale(0.3); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
+    this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
     this.physics.add.collider(this.player, this.platforms);
@@ -117,12 +122,14 @@ export default class GameScene extends Phaser.Scene {
     // this.canFlashTimeout = 5000;
 
     this.cameras.main.startFollow(this.player);
-    
+
+
     this.graphics = this.add.graphics();
     this.newGraphics = this.add.graphics();
     this.progressBar = new Phaser.Geom.Rectangle(this.player.x-60, this.player.y+270, 100, 10);
     this.progressBarFillWidth = 0;
     this.progressBarFill = new Phaser.Geom.Rectangle(this.player.x-60, this.player.y+270, this.progressBarFillWidth, 10);   
+    
   }
   update() {
     this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);
@@ -213,4 +220,5 @@ export default class GameScene extends Phaser.Scene {
       // console.log(this.canFlashTimeout);    
     // }
   }
+  
 }
