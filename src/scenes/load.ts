@@ -1,12 +1,9 @@
 import { OurScenes } from '../enums/_scenes';
-import CharacterServices from "../services/characterServices";
 
 export default class LoadScene extends Phaser.Scene {
   startText: Phaser.GameObjects.Text;
   graphics: Phaser.GameObjects.Graphics;
   newGraphics: Phaser.GameObjects.Graphics;
-  characterServices: CharacterServices;
-
   constructor() {
     super({
       key: OurScenes.LOAD,      
@@ -69,7 +66,7 @@ export default class LoadScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start(OurScenes.MENU);
+      this.scene.start(OurScenes.START_MENU);
     });
   }
 }

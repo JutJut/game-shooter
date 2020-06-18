@@ -6,7 +6,7 @@ export default class StartMenuScene extends Phaser.Scene {
 
   constructor() {
     super({
-      key: OurScenes.MENU,
+      key: OurScenes.START_MENU,
     });
   }
 
@@ -30,7 +30,7 @@ export default class StartMenuScene extends Phaser.Scene {
       .setScale(0.4);
 
     startButton.on('pointerdown', () => {
-      this.scene.start(OurScenes.GAME);
+      this.scene.start(OurScenes.CHARACTER_PICKER);
     });
     settingsButton.on('pointerdown', () => {
       return;
