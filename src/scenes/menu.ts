@@ -18,10 +18,17 @@ export default class StartMenuScene extends Phaser.Scene {
     const startButton = this.add.image(this.game.config.width / 2.1, this.game.config.height / 2.3, 'button_start').setInteractive().setScale(0.4);
     const settingsButton = this.add.image(this.game.config.width / 2.1, this.game.config.height / 1.7, 'button_settings').setInteractive().setScale(0.4);
     const audio = this.add.image(this.game.config.width / 15, this.game.config.height / 10, 'button_audio').setInteractive().setScale(0.4);
-
+   
     startButton.on('pointerdown', () => {
-      this.scene.start(OurScenes.GAME);
+      this.scene.start(OurScenes.CHARACTER_PICKER);      
     });
-  }
+  }  
   
 }
+
+
+
+
+
+
+
