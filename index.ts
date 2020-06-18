@@ -4,7 +4,7 @@ import GameScene from './src/scenes/game';
 import LoadScene from './src/scenes/load';
 import StartMenuScene from './src/scenes/menu';
 import CharacterPickerScene from './src/scenes/characterpicker';
-import Characters from './src/enums/characterConfigurations';
+import { Characters } from './src/enums/characterConfigurations';
 
 const config = {
   type: Phaser.AUTO,

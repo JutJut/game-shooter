@@ -1,13 +1,17 @@
 import { OurScenes } from '../enums/_scenes';
+import { Characters } from '../enums/characterConfigurations';
 
 export default class LoadScene extends Phaser.Scene {
   startText: Phaser.GameObjects.Text;
-  graphics: Phaser.GameObjects.Graphics;
+  graphics: Phaser.GameObjects.Graphics;  
   newGraphics: Phaser.GameObjects.Graphics;
+  charactersConfiguration;
+
   constructor() {
     super({
-      key: OurScenes.LOAD,      
+      key: OurScenes.LOAD,                  
     });
+    this.charactersConfiguration = new Characters();
   }
 
   updateBar(percentage) {
@@ -15,10 +19,13 @@ export default class LoadScene extends Phaser.Scene {
   }
 
   complete() {
-    console.log('COMPLETE!');
+    console.log('COMPLETE!');    
   }
 
   preload() {
+    
+    var characters = this.charactersConfiguration.CharactersConfigurations;
+    
     this.game.config.physics.arcade.width = this.scene.systems.scale.width;
     this.game.config.physics.arcade.height = this.scene.systems.scale.height;
 
@@ -29,13 +36,19 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet('grass', './assets/tiles/grass_tile.png', { frameWidth: 100, frameHeight: 70 });
 
     // Game characters
-    this.load.spritesheet('steamman_idle', './assets/SteamMan/SteamMan_idle.png', { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('steamman_walk', './assets/SteamMan/SteamMan_walk.png', { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('steamman_run', './assets/SteamMan/SteamMan_run.png', { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('steamman_jump', './assets/SteamMan/SteamMan_jump.png', { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('robo_idle', './assets/robo/robo_idle.png', { frameWidth: 137, frameHeight: 140 });
-    this.load.spritesheet('robo_idle2', './assets/robo/robo_idle2.png', { frameWidth: 137, frameHeight: 140 });
-    this.load.spritesheet('robo_walk', './assets/robo/robo_walk.png', { frameWidth: 137, frameHeight: 140 });
+    this.load.spritesheet(characters.steam_man.spriteSheets.IDLE.key, characters.steam_man.spriteSheets.IDLE.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
+    this.load.spritesheet(characters.steam_man.spriteSheets.WALK.key, characters.steam_man.spriteSheets.WALK.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
+    this.load.spritesheet(characters.steam_man.spriteSheets.RUN.key, characters.steam_man.spriteSheets.RUN.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
+    this.load.spritesheet(characters.steam_man.spriteSheets.JUMP.key, characters.steam_man.spriteSheets.JUMP.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
+
+    this.load.spritesheet(characters.robot.spriteSheets.IDLE.key, characters.robot.spriteSheets.IDLE.path, { frameWidth: characters.robot.body.display.frameWidth, frameHeight: characters.robot.body.display.frameHeight }); 
+    this.load.spritesheet(characters.robot.spriteSheets.WALK.key, characters.robot.spriteSheets.WALK.path, { frameWidth: characters.robot.body.display.frameWidth, frameHeight: characters.robot.body.display.frameHeight });
+
+    this.load.spritesheet(characters.bandit_green.spriteSheets.SPAWN.key, characters.bandit_green.spriteSheets.SPAWN.path, { frameWidth: characters.bandit_green.body.display.frameWidth, frameHeight: characters.bandit_green.body.display.frameHeight });
+    this.load.spritesheet(characters.bandit_green.spriteSheets.IDLE.key, characters.steam_man.spriteSheets.IDLE.path, { frameWidth: characters.bandit_green.body.display.frameWidth, frameHeight: characters.bandit_green.body.display.frameHeight });
+    this.load.spritesheet(characters.bandit_green.spriteSheets.WALK.key, characters.bandit_green.spriteSheets.WALK.path, { frameWidth: characters.bandit_green.body.display.frameWidth, frameHeight: characters.bandit_green.body.display.frameHeight });
+    this.load.spritesheet(characters.bandit_green.spriteSheets.RUN.key, characters.bandit_green.spriteSheets.RUN.path, { frameWidth: characters.bandit_green.body.display.frameWidth, frameHeight: characters.bandit_green.body.display.frameHeight });
+    this.load.spritesheet(characters.bandit_green.spriteSheets.JUMP.key, characters.bandit_green.spriteSheets.JUMP.path, { frameWidth: characters.bandit_green.body.display.frameWidth, frameHeight: characters.bandit_green.body.display.frameHeight });
 
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');

@@ -1,4 +1,2 @@
-export const Player = {
-    ID : '',
-    animations: {}
+export const Player = {   
 }

@@ -5,8 +5,10 @@ import {
 import { Player } from '../enums/_player';
 import { OurScenes } from '../enums/_scenes';
 import { KeyboardServices } from '../services/keyboardServices';
+import { Characters } from '../enums/characterConfigurations';
 
 export default class GameScene extends Phaser.Scene {
+  characters: Characters;
   backgroundImage: Phaser.GameObjects.Image;
   startText: Phaser.GameObjects.Text;
   platforms;
@@ -20,10 +22,12 @@ export default class GameScene extends Phaser.Scene {
     super({
       key: OurScenes.GAME,      
     });
+    this.characters = new Characters();
   }
 
   create() {
     this.keyboardServices = new KeyboardServices(this.input);
+    var characters = this.characters.CharactersConfigurations;
 
     // IMAGES | TILES
     this.backgroundImage = this.add.image(0, 0, 'dark_forrest').setScale(2);
