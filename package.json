@@ -7,7 +7,8 @@
     "start": "parcel serve watch index.html",
     "deploy": "parcel build index.html --public-url ./ --no-source-maps",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "prettify": "prettier --write \"**/*.{ts,tsx}\""
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,10 @@
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
     "parcel-plugin-static-files-copy": "^2.4.3",
+    "parcel-plugin-tslint": "0.0.2",
     "prettier": "2.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {

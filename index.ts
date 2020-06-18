@@ -9,7 +9,7 @@ import Characters from './src/enums/characterConfigurations';
 const config = {
   type: Phaser.AUTO,
   scale: {
-    width:1500,
+    width: 1500,
     height: 800,
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -32,12 +32,11 @@ const config = {
         up: true,
         down: true,
         left: true,
-        right: true
+        right: true,
       },
-      timeScale: 0.6, 
+      timeScale: 0.6,
     },
   },
 };
 
 var game = new Phaser.Game(config);
-
