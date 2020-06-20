@@ -1,17 +1,16 @@
 import { OurScenes } from '../enums/_scenes';
 
 export class Characters extends Phaser.Scene {
-CharactersConfigurations: object;
+
     constructor(){
         super({
-            key: OurScenes.CHARACTERS,  
+             key: OurScenes.CHARACTERS,  
         });
     }
+    
+      
 
-    create(){      
-
-     this.CharactersConfigurations = {
-         a:'a',
+     CharactersConfigurations = {        
         'steam_man': {
             key: 'steam_man',
             body:{
@@ -24,37 +23,61 @@ CharactersConfigurations: object;
             },
             animations: {
                 SPAWN: {
-                    key: 'SPAWN',
-                    frames: this.anims.generateFrameNumbers('steamman_idle', { start: 0, end: 5 }),
+                    key: 'SPAWN',                 
+                    frames:{
+                        key: 'steamman_idle',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 },
                 IDLE: {
                     key: 'IDLE',
-                    frames: this.anims.generateFrameNumbers('steamman_idle', { start: 0, end: 5 }),
+                    frames: {
+                        key: 'steamman_idle',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 },
                 WALK: {
                     key: 'WALK',
-                    frames: this.anims.generateFrameNumbers('steamman_walk', { start: 0, end: 5 }),
+                    frames:{
+                        key: 'steamman_walk',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
                     frameRate: 100,
                     repeat: -1
                 },
                 RUN: {
                     key: 'RUN',
-                    frames: this.anims.generateFrameNumbers('steamman_run', { start: 0, end: 5 }),
+                    frames:{
+                        key: 'steamman_run',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
                     frameRate: 200,
                     repeat: -1
                 },
                 JUMP: {
                     key: 'JUMP',
-                    frames: this.anims.generateFrameNumbers('steamman_jump', { start: 0, end: 5 }),
+                    frames:{
+                        key: 'steamman_idle',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 }
             },
-            spriteSheets:{                
+            spriteSheets:{     
+                SPAWN: {
+                    key:'steam_man',
+                    path:'./assets/SteamMan/SteamMan.png'
+                },           
                 IDLE: {
                     key:'steamman_idle',
                     path:'./assets/SteamMan/SteamMan_idle.png'
@@ -89,38 +112,58 @@ CharactersConfigurations: object;
             animations: {
                 SPAWN:{
                     key: 'SPAWN',
-                    frames: this.anims.generateFrameNumbers('robo_idle', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'robo_idle',
+                        startFrame: 0,
+                        endFrame: 28,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 },
                 IDLE: {
                     key: 'IDLE',
-                    frames: this.anims.generateFrameNumbers('robo_idle', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'robo_idle',
+                        startFrame: 0,
+                        endFrame: 28,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 },
                 WALK: {
                     key: 'WALK',
-                    frames: this.anims.generateFrameNumbers('robo_walk', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'robo_walk',
+                        startFrame: 0,
+                        endFrame: 28,
+                    }, 
                     frameRate: 100,
                     repeat: -1
                 },
                 RUN: {
                     key: 'RUN',
-                    frames: this.anims.generateFrameNumbers('robo_walk', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'robo_walk',
+                        startFrame: 0,
+                        endFrame: 28,
+                    }, 
                     frameRate: 200,
                     repeat: -1
                 },
                 JUMP: {
                     key: 'JUMP',
-                    frames: this.anims.generateFrameNumbers('robo_idle', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'robo_idle',
+                        startFrame: 0,
+                        endFrame: 28,
+                    },
                     frameRate: 10,
                     repeat: -1
                 }
             },
             spriteSheets:{
                 SPAWN: {
-                    key:'robo_idle',
+                    key:'robot',
                     path:'./assets/robo/robo_idle.png'
                 },
                 IDLE: {
@@ -155,39 +198,59 @@ CharactersConfigurations: object;
             },
             animations: {
                 SPAWN: {
-                    key: 'SPAWN',
-                    frames: this.anims.generateFrameNumbers('bandit_green_spawn', { start: 0, end: 22 }),
+                    key: 'SPAWN',                    
+                    frames:{
+                        key: 'bandit_green_spawn',
+                        startFrame: 0,
+                        endFrame: 22,
+                    }, 
                     frameRate: 300,
                     repeat: -1
                 },
                 IDLE: {
                     key: 'IDLE',
-                    frames: this.anims.generateFrameNumbers('bandit_idle', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'bandit_green_idle',
+                        startFrame: 0,
+                        endFrame: 22,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 },
                 WALK: {
                     key: 'WALK',
-                    frames: this.anims.generateFrameNumbers('bandit_walk', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'bandit_green_walk',
+                        startFrame: 0,
+                        endFrame: 22,
+                    }, 
                     frameRate: 100,
                     repeat: -1
                 },
                 RUN: {
                     key: 'RUN',
-                    frames: this.anims.generateFrameNumbers('bandit_run', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'bandit_green_run',
+                        startFrame: 0,
+                        endFrame: 22,
+                    }, 
                     frameRate: 200,
                     repeat: -1
                 },
                 JUMP: {
                     key: 'JUMP',
-                    frames: this.anims.generateFrameNumbers('bandit_jump', { start: 0, end: 28 }),
+                    frames:{
+                        key: 'bandit_green_jump',
+                        startFrame: 0,
+                        endFrame: 22,
+                    }, 
                     frameRate: 10,
                     repeat: -1
                 }
             },
             spriteSheets:{
                 SPAWN: {
-                    key:'bandit_green_spawn',
+                    key:'bandit_green',
                     path:'./assets/bandit_green/bandit_green_spawn.png'
                 },
                 IDLE: {
@@ -211,6 +274,5 @@ CharactersConfigurations: object;
             }
         },       
     }
-
-    }    
+        
 }

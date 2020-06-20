@@ -26,6 +26,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    console.log(Player);
     this.keyboardServices = new KeyboardServices(this.input);
     var characters = this.characters.CharactersConfigurations;
 
@@ -48,36 +49,38 @@ export default class GameScene extends Phaser.Scene {
     this.platforms.create(760, 270, 'grass');
 
     // PLAYER AND ANIMATIONS
-    this.player = this.physics.add.sprite((1500 / 2) , 50, Player.ID).setScale(0.3); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
+    this.player = this.physics.add.sprite((1500 / 2) , 50, Player.key).setScale(Player.body.display.scale); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
     this.physics.add.collider(this.player, this.platforms);       
 
     this.anims.create({
-      key: 'IDLE',
-      frames: this.anims.generateFrameNumbers(Player.ID, { start: 0, end: 20 }),
-      frameRate: 10,
-      repeat: -1,
-    });
-    this.anims.create({
-      key: 'WALK',
-      frames: this.anims.generateFrameNumbers('robo_walk', { start: 0, end: 28 }),
-      frameRate: 100,
-      repeat: -1,
+      key: Player.animations.IDLE.key,
+      frames: this.anims.generateFrameNumbers(Player.animations.IDLE.frames.key, { start: Player.animations.IDLE.frames.startFrame, end: Player.animations.IDLE.frames.endFrame }),
+      frameRate: Player.animations.IDLE.frameRate,
+      repeat: Player.animations.IDLE.repeat,
     });   
     this.anims.create({
-      key: 'RUN',
-      frames: this.anims.generateFrameNumbers('robo_walk', { start: 0, end: 28 }),
-      frameRate: 200,
-      repeat: -1,
-    });
+      key: Player.animations.WALK.key,
+      frames: this.anims.generateFrameNumbers(Player.animations.WALK.frames.key, { start: Player.animations.WALK.frames.startFrame, end: Player.animations.WALK.frames.endFrame }),
+      frameRate: Player.animations.WALK.frameRate,
+      repeat: Player.animations.WALK.repeat,
+    });   
     this.anims.create({
-      key: 'JUMP',
-      frames: this.anims.generateFrameNumbers('robo_idle', { start: 0, end: 19 }),
-      frameRate: 10,
-      repeat: -1,
-    });
+      key: Player.animations.RUN.key,
+      frames: this.anims.generateFrameNumbers(Player.animations.RUN.frames.key, { start: Player.animations.RUN.frames.startFrame, end: Player.animations.RUN.frames.endFrame }),
+      frameRate: Player.animations.RUN.frameRate,
+      repeat: Player.animations.RUN.repeat,
+    });   
+    this.anims.create({
+      key: Player.animations.JUMP.key,
+      frames: this.anims.generateFrameNumbers(Player.animations.JUMP.frames.key, { start: Player.animations.JUMP.frames.startFrame, end: Player.animations.JUMP.frames.endFrame }),
+      frameRate: Player.animations.JUMP.frameRate,
+      repeat: Player.animations.JUMP.repeat,
+    });   
+    
+    
     //Defaults when player is not moving
     this.player.play('IDLE');
     this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);   
@@ -98,7 +101,7 @@ export default class GameScene extends Phaser.Scene {
     }
     
     if (this.keyboardInputs.D.isDown) {
-      this.player.flipX = true;
+      this.player.flipX = false;
       if (this.keyboardInputs.SHIFT.isDown) {
         this.player.anims.play('RUN', true);
         this.player.setVelocityX(160);
@@ -112,7 +115,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     if (this.keyboardInputs.A.isDown) {
-      this.player.flipX = false;
+      this.player.flipX = true;
       if (this.keyboardInputs.SHIFT.isDown) {
         this.player.anims.play('RUN', true);
         this.player.setVelocityX(-160);
