@@ -1,4 +1,4 @@
-import { OurScenes } from '../enums/_scenes';
+import { OurScenes } from '../enums/scenes';
 
 export default class StartMenuScene extends Phaser.Scene {
   backgroundImage: Phaser.GameObjects.Image;

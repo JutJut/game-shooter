@@ -1,17 +1,15 @@
-import { OurScenes } from '../enums/_scenes';
-import { Characters } from '../enums/characterConfigurations';
+import { availableCharacters } from '../config/characterConfig';
+import { OurScenes } from '../enums/scenes';
 
 export default class LoadScene extends Phaser.Scene {
   startText: Phaser.GameObjects.Text;
-  graphics: Phaser.GameObjects.Graphics;  
+  graphics: Phaser.GameObjects.Graphics;
   newGraphics: Phaser.GameObjects.Graphics;
-  charactersConfiguration: Characters;
 
   constructor() {
     super({
-      key: OurScenes.LOAD,                  
+      key: OurScenes.LOAD,
     });
-    this.charactersConfiguration = new Characters();
   }
 
   updateBar(percentage) {
@@ -19,13 +17,12 @@ export default class LoadScene extends Phaser.Scene {
   }
 
   complete() {
-    console.log('COMPLETE!');    
+    console.log('COMPLETE!');
   }
 
-  preload() {   
-    
-    var characters = this.charactersConfiguration.CharactersConfigurations;
-    
+  preload() {
+    const characters = availableCharacters;
+
     this.game.config.physics.arcade.width = this.scene.systems.scale.width;
     this.game.config.physics.arcade.height = this.scene.systems.scale.height;
 
@@ -36,23 +33,29 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet('grass', './assets/tiles/grass_tile.png', { frameWidth: 100, frameHeight: 70 });
 
     // Game characters
-    this.load.spritesheet(characters.steam_man.spriteSheets.SPAWN.key, characters.steam_man.spriteSheets.SPAWN.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
-    this.load.spritesheet(characters.steam_man.spriteSheets.IDLE.key, characters.steam_man.spriteSheets.IDLE.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
-    this.load.spritesheet(characters.steam_man.spriteSheets.WALK.key, characters.steam_man.spriteSheets.WALK.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
-    this.load.spritesheet(characters.steam_man.spriteSheets.RUN.key, characters.steam_man.spriteSheets.RUN.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
-    this.load.spritesheet(characters.steam_man.spriteSheets.JUMP.key, characters.steam_man.spriteSheets.JUMP.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });    
-
-    this.load.spritesheet(characters.adventurer.spriteSheets.SPAWN.key, characters.adventurer.spriteSheets.SPAWN.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
-    this.load.spritesheet(characters.adventurer.spriteSheets.IDLE.key, characters.adventurer.spriteSheets.IDLE.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
-    this.load.spritesheet(characters.adventurer.spriteSheets.WALK.key, characters.adventurer.spriteSheets.WALK.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
-    this.load.spritesheet(characters.adventurer.spriteSheets.RUN.key, characters.adventurer.spriteSheets.RUN.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
-    this.load.spritesheet(characters.adventurer.spriteSheets.JUMP.key, characters.adventurer.spriteSheets.JUMP.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });    
-
-    this.load.spritesheet(characters.archer.spriteSheets.SPAWN.key, characters.archer.spriteSheets.SPAWN.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight })
-    this.load.spritesheet(characters.archer.spriteSheets.IDLE.key, characters.archer.spriteSheets.IDLE.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
-    this.load.spritesheet(characters.archer.spriteSheets.WALK.key, characters.archer.spriteSheets.WALK.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
-    this.load.spritesheet(characters.archer.spriteSheets.RUN.key, characters.archer.spriteSheets.RUN.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
-    this.load.spritesheet(characters.archer.spriteSheets.JUMP.key, characters.archer.spriteSheets.JUMP.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight }); 
+    characters.forEach((characterConfig) => {
+      // TODO: Refactor into forEach of each spriteSheet key
+      this.load.spritesheet(characterConfig.spriteSheets.SPAWN.key, characterConfig.spriteSheets.SPAWN.path, {
+        frameWidth: characterConfig.body.display.frameWidth,
+        frameHeight: characterConfig.body.display.frameHeight,
+      });
+      this.load.spritesheet(characterConfig.spriteSheets.IDLE.key, characterConfig.spriteSheets.IDLE.path, {
+        frameWidth: characterConfig.body.display.frameWidth,
+        frameHeight: characterConfig.body.display.frameHeight,
+      });
+      this.load.spritesheet(characterConfig.spriteSheets.WALK.key, characterConfig.spriteSheets.WALK.path, {
+        frameWidth: characterConfig.body.display.frameWidth,
+        frameHeight: characterConfig.body.display.frameHeight,
+      });
+      this.load.spritesheet(characterConfig.spriteSheets.RUN.key, characterConfig.spriteSheets.RUN.path, {
+        frameWidth: characterConfig.body.display.frameWidth,
+        frameHeight: characterConfig.body.display.frameHeight,
+      });
+      this.load.spritesheet(characterConfig.spriteSheets.JUMP.key, characterConfig.spriteSheets.JUMP.path, {
+        frameWidth: characterConfig.body.display.frameWidth,
+        frameHeight: characterConfig.body.display.frameHeight,
+      });
+    });
 
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');

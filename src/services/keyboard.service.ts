@@ -1,6 +1,6 @@
-import { movementKeys } from '../enums/_keyboard';
+import { movementKeys } from '../enums/keyboard';
 
-export class KeyboardServices {
+export class KeyboardService {
   keyboardInputs;
   input;
 

@@ -3,5 +3,5 @@ export enum OurScenes {
   START_MENU = 'StartMenu',
   LOAD = 'Load',
   CHARACTER_PICKER = 'CharacterPicker',
-  CHARACTERS = 'Characters'
+  CHARACTERS = 'Characters',
 }

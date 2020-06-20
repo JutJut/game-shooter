@@ -1,10 +1,9 @@
 import Phaser from 'phaser';
 
+import CharacterPickerScene from './src/scenes/characterpicker';
 import GameScene from './src/scenes/game';
 import LoadScene from './src/scenes/load';
 import StartMenuScene from './src/scenes/menu';
-import CharacterPickerScene from './src/scenes/characterpicker';
-import { Characters } from './src/enums/characterConfigurations';
 
 const config = {
   type: Phaser.AUTO,
@@ -16,7 +15,7 @@ const config = {
   },
   // width: 1500,
   // height: 1000,
-  scene: [LoadScene, StartMenuScene, GameScene, CharacterPickerScene, Characters],
+  scene: [LoadScene, StartMenuScene, GameScene, CharacterPickerScene],
   backgroundColor: '#2d2d2d',
   physics: {
     default: 'arcade',
@@ -39,4 +38,4 @@ const config = {
   },
 };
 
-var game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
