@@ -49,7 +49,7 @@ export class Characters extends Phaser.Scene {
                         startFrame: 0,
                         endFrame: 5,
                     }, 
-                    frameRate: 100,
+                    frameRate: 10,
                     repeat: -1
                 },
                 RUN: {
@@ -59,7 +59,7 @@ export class Characters extends Phaser.Scene {
                         startFrame: 0,
                         endFrame: 5,
                     }, 
-                    frameRate: 200,
+                    frameRate: 20,
                     repeat: -1
                 },
                 JUMP: {
