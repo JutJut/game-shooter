@@ -65,7 +65,7 @@ export class Characters extends Phaser.Scene {
                 JUMP: {
                     key: 'JUMP',
                     frames:{
-                        key: 'steamman_idle',
+                        key: 'steamman_jump',
                         startFrame: 0,
                         endFrame: 5,
                     }, 
@@ -181,6 +181,93 @@ export class Characters extends Phaser.Scene {
                 JUMP: {
                     key:'adventurer_jump',
                     path:'./assets/Adventurer/adventurer_jump.png'
+                }
+            },
+            audioAssets:{
+            }
+        },
+        'archer': {
+            key: 'archer',
+            body:{
+                display:{
+                    frameWidth: 128,
+                    frameHeight: 128,
+                    scale: 1
+                },
+                health: 100,                
+            },
+            animations: {
+                SPAWN: {
+                    key: 'SPAWN',                 
+                    frames:{
+                        key: 'archer',
+                        startFrame: 0,
+                        endFrame: 1,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                IDLE: {
+                    key: 'IDLE',
+                    frames: {
+                        key: 'archer_idle',
+                        startFrame: 0,
+                        endFrame: 3,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                WALK: {
+                    key: 'WALK',
+                    frames:{
+                        key: 'archer_run',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                RUN: {
+                    key: 'RUN',
+                    frames:{
+                        key: 'archer_run',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 20,
+                    repeat: -1
+                },
+                JUMP: {
+                    key: 'JUMP',
+                    frames:{
+                        key: 'archer_jump',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                }
+            },
+            spriteSheets:{     
+                SPAWN: {
+                    key:'archer',
+                    path:'./assets/Archer/archer_idle.png'
+                },           
+                IDLE: {
+                    key:'archer_idle',
+                    path:'./assets/Archer/archer_idle.png'
+                },
+                WALK: {
+                    key:'archer_run',
+                    path:'./assets/Archer/archer_run.png'
+                },
+                RUN: {
+                    key:'archer_run',
+                    path:'./assets/Archer/archer_run.png'
+                },
+                JUMP: {
+                    key:'archer_jump',
+                    path:'./assets/Archer/archer_jump.png'
                 }
             },
             audioAssets:{

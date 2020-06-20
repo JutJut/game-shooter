@@ -17,12 +17,13 @@ export default class CharacterPickerScene extends Phaser.Scene {
      
         var char = this.characters.CharactersConfigurations;
         this.add.image(0, 0, 'dark_forrest').setScale(1.7);
-        const characters = this.physics.add.staticGroup();       
-        const steamman = this.add.image((1500 / 2) , 100, char.steam_man.key).setScale(1).setInteractive();  
-        const adventurer = this.add.image((1500 / 2) , 50, char.adventurer.key).setScale(1).setInteractive();    
-
-        characters.add(steamman);
-        characters.add(adventurer);
+        const characters = this.physics.add.staticGroup();   
+        var k = 0;
+        for(var i = 0; i < Object.keys(char).length; i++){
+            k += 70; 
+            var character = this.add.image((1500/2), k, Object.entries(char)[i][0]).setScale(1).setInteractive();
+            characters.add(character);
+        } 
 
         var entries = characters.children.entries;    
         console.log(characters.children.entries);

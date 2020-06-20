@@ -54,7 +54,7 @@ export default class GameScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
     this.physics.add.collider(this.player, this.platforms);       
-
+    console.log(Player.animations.IDLE.key);
     this.anims.create({
       key: Player.animations.IDLE.key,
       frames: this.anims.generateFrameNumbers(Player.animations.IDLE.frames.key, { start: Player.animations.IDLE.frames.startFrame, end: Player.animations.IDLE.frames.endFrame }),
@@ -119,13 +119,14 @@ export default class GameScene extends Phaser.Scene {
       if (this.keyboardInputs.SHIFT.isDown) {
         this.player.anims.play('RUN', true);
         this.player.setVelocityX(-160);
-      } else {
+      } 
+      else {
         this.player.anims.play('WALK', true);
         this.player.setVelocityX(-120);
-      }
+      }        
     }
 
-    if (this.didPressJump && jumpProperties.CAN_JUMP) {
+    if (this.didPressJump && jumpProperties.CAN_JUMP) {    
       this.player.anims.play('JUMP', true);
       this.player.setVelocityY(-350);
       jumpProperties.JUMP_COUNTER++;

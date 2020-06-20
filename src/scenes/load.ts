@@ -48,6 +48,12 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet(characters.adventurer.spriteSheets.RUN.key, characters.adventurer.spriteSheets.RUN.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
     this.load.spritesheet(characters.adventurer.spriteSheets.JUMP.key, characters.adventurer.spriteSheets.JUMP.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });    
 
+    this.load.spritesheet(characters.archer.spriteSheets.SPAWN.key, characters.archer.spriteSheets.SPAWN.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight })
+    this.load.spritesheet(characters.archer.spriteSheets.IDLE.key, characters.archer.spriteSheets.IDLE.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
+    this.load.spritesheet(characters.archer.spriteSheets.WALK.key, characters.archer.spriteSheets.WALK.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
+    this.load.spritesheet(characters.archer.spriteSheets.RUN.key, characters.archer.spriteSheets.RUN.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight });
+    this.load.spritesheet(characters.archer.spriteSheets.JUMP.key, characters.archer.spriteSheets.JUMP.path, { frameWidth: characters.archer.body.display.frameWidth, frameHeight: characters.archer.body.display.frameHeight }); 
+
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');
     this.load.image('button_settings', './assets/Menu/Large-Buttons/Large-Buttons/SettingsButton.png');
