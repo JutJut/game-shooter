@@ -11,15 +11,7 @@ export default class LoadScene extends Phaser.Scene {
     super({
       key: OurScenes.LOAD,
     });
-  }
-
-  updateBar(percentage) {
-    console.log('P:' + percentage);
-  }
-
-  complete() {
-    console.log('COMPLETE!');
-  }
+  } 
 
   preload() {
     const characters = availableCharacters;    

@@ -26,7 +26,9 @@ export default class GameScene extends Phaser.Scene {
     this.playerService = PlayerService.Instance;
 
     // IMAGES | TILES
-    this.backgroundImage = this.add.image(0, 0, 'dark_forrest').setScale(2);
+    this.backgroundImage = this.add.image(0, 0, 'dark_forrest').setScale(2); 
+    this.backgroundImage.scrollFactorX = 0;
+    this.backgroundImage.scrollFactorY = 0;
     this.platforms = this.physics.add.staticGroup();
 
     let horizontalDistanceIndex = 0;
