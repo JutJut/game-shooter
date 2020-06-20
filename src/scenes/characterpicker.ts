@@ -17,12 +17,10 @@ export default class CharacterPickerScene extends Phaser.Scene {
      
         var char = this.characters.CharactersConfigurations;
         this.add.image(0, 0, 'dark_forrest').setScale(1.7);
-        const characters = this.physics.add.staticGroup();
-        const robo = this.add.image((1500 / 2) , 50, 'robot').setScale(0.3).setInteractive();
-        const steamman = this.add.image((1500 / 2) , 100, 'steam_man').setScale(1).setInteractive();
-        // const bandit = this.add.image((1500 / 2) , 100, 'bandit_idle').setScale(1).setInteractive();
+        const characters = this.physics.add.staticGroup();       
+        const steamman = this.add.image((1500 / 2) , 100, 'steam_man').setScale(1).setInteractive();      
 
-        characters.add(robo); characters.add(steamman); // characters.add(bandit);
+        characters.add(steamman);
         
         var entries = characters.children.entries;    
 
@@ -36,8 +34,7 @@ export default class CharacterPickerScene extends Phaser.Scene {
                 } 
                 else {
                     console.log(false);
-                }                                                  
-                //  this.scene.start(OurScenes.GAME);
+                }              
             });            
         }, this);
             
