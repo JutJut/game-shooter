@@ -42,6 +42,12 @@ export default class LoadScene extends Phaser.Scene {
     this.load.spritesheet(characters.steam_man.spriteSheets.RUN.key, characters.steam_man.spriteSheets.RUN.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });
     this.load.spritesheet(characters.steam_man.spriteSheets.JUMP.key, characters.steam_man.spriteSheets.JUMP.path, { frameWidth: characters.steam_man.body.display.frameWidth, frameHeight: characters.steam_man.body.display.frameHeight });    
 
+    this.load.spritesheet(characters.adventurer.spriteSheets.SPAWN.key, characters.adventurer.spriteSheets.SPAWN.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
+    this.load.spritesheet(characters.adventurer.spriteSheets.IDLE.key, characters.adventurer.spriteSheets.IDLE.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
+    this.load.spritesheet(characters.adventurer.spriteSheets.WALK.key, characters.adventurer.spriteSheets.WALK.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
+    this.load.spritesheet(characters.adventurer.spriteSheets.RUN.key, characters.adventurer.spriteSheets.RUN.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });
+    this.load.spritesheet(characters.adventurer.spriteSheets.JUMP.key, characters.adventurer.spriteSheets.JUMP.path, { frameWidth: characters.adventurer.body.display.frameWidth, frameHeight: characters.adventurer.body.display.frameHeight });    
+
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');
     this.load.image('button_settings', './assets/Menu/Large-Buttons/Large-Buttons/SettingsButton.png');

@@ -99,6 +99,93 @@ export class Characters extends Phaser.Scene {
     
             }
         },
+        'adventurer': {
+            key: 'adventurer',
+            body:{
+                display:{
+                    frameWidth: 50,
+                    frameHeight: 37,
+                    scale: 1
+                },
+                health: 100,                
+            },
+            animations: {
+                SPAWN: {
+                    key: 'SPAWN',                 
+                    frames:{
+                        key: 'adventurer',
+                        startFrame: 0,
+                        endFrame: 1,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                IDLE: {
+                    key: 'IDLE',
+                    frames: {
+                        key: 'adventurer_idle',
+                        startFrame: 0,
+                        endFrame: 3,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                WALK: {
+                    key: 'WALK',
+                    frames:{
+                        key: 'adventurer_run',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                },
+                RUN: {
+                    key: 'RUN',
+                    frames:{
+                        key: 'adventurer_run',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 20,
+                    repeat: -1
+                },
+                JUMP: {
+                    key: 'JUMP',
+                    frames:{
+                        key: 'adventurer_jump',
+                        startFrame: 0,
+                        endFrame: 5,
+                    }, 
+                    frameRate: 10,
+                    repeat: -1
+                }
+            },
+            spriteSheets:{     
+                SPAWN: {
+                    key:'adventurer',
+                    path:'./assets/Adventurer/adventurer_spawn.png'
+                },           
+                IDLE: {
+                    key:'adventurer_idle',
+                    path:'./assets/Adventurer/adventurer_idle.png'
+                },
+                WALK: {
+                    key:'adventurer_run',
+                    path:'./assets/Adventurer/adventurer_run.png'
+                },
+                RUN: {
+                    key:'adventurer_run',
+                    path:'./assets/Adventurer/adventurer_run.png'
+                },
+                JUMP: {
+                    key:'adventurer_jump',
+                    path:'./assets/Adventurer/adventurer_jump.png'
+                }
+            },
+            audioAssets:{
+            }
+        },
     }
         
 }
