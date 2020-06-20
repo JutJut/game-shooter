@@ -21,7 +21,7 @@ export default class CharacterPickerScene extends Phaser.Scene {
 
     availableCharacters.forEach((characterConfig, index) => {
       const character = this.add
-        .image(1500 / 2, spacing * (index + 1), characterConfig.key)
+        .image(this.scene.systems.scale.width / 2, spacing * (index + 1), characterConfig.key)
         .setScale(1)
         .setInteractive();
       character.on('pointerdown', () => {

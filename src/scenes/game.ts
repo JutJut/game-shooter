@@ -12,7 +12,7 @@ export default class GameScene extends Phaser.Scene {
   playerService: PlayerService;
   steammanIdle: Phaser.GameObjects.Sprite;
   keyboardInputs;
-  didPressJump;
+  didPressJump: boolean;
   keyboardService: KeyboardService;
 
   constructor() {
@@ -29,70 +29,38 @@ export default class GameScene extends Phaser.Scene {
     this.backgroundImage = this.add.image(0, 0, 'dark_forrest').setScale(2);
     this.platforms = this.physics.add.staticGroup();
 
-    let t = 0;
+    let horizontalDistanceIndex = 0;
     for (let i = 0; i < 40; i++) {
-      t += 105;
-      this.platforms.create(t, 350, 'grass');
-    }
-    let v2 = 0;
-    for (let i = 0; i < 40; i++) {
-      v2 += 105;
-      this.platforms.create(v2, 650, 'grass');
-    }
-
-    this.platforms.create(360, 270, 'grass');
-    this.platforms.create(760, 270, 'grass');
+      horizontalDistanceIndex += 105;
+      this.platforms.create(horizontalDistanceIndex, 350, 'grass');
+    }  
 
     // PLAYER AND ANIMATIONS
     this.player = this.physics.add
       .sprite(1500 / 2, 50, this.playerService.player.key)
-      .setScale(this.playerService.player.body.display.scale); // To add physics you need to do this.player = this.physics.add.sprite(250, 50, 'steamman_idle'); instead of this.player = this.add.sprite(250, 50, 'steamman_idle');
+      .setScale(this.playerService.player.body.display.scale);
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
     this.player.body.setGravityY(300);
-    this.physics.add.collider(this.player, this.platforms);
+    this.physics.add.collider(this.player, this.platforms);   
 
-    // TODO: Refactor into forLoop for each animation
-    this.anims.create({
-      key: this.playerService.player.animations.IDLE.key,
-      frames: this.anims.generateFrameNumbers(this.playerService.player.animations.IDLE.frames.key, {
-        start: this.playerService.player.animations.IDLE.frames.startFrame,
-        end: this.playerService.player.animations.IDLE.frames.endFrame,
-      }),
-      frameRate: this.playerService.player.animations.IDLE.frameRate,
-      repeat: this.playerService.player.animations.IDLE.repeat,
-    });
-    this.anims.create({
-      key: this.playerService.player.animations.WALK.key,
-      frames: this.anims.generateFrameNumbers(this.playerService.player.animations.WALK.frames.key, {
-        start: this.playerService.player.animations.WALK.frames.startFrame,
-        end: this.playerService.player.animations.WALK.frames.endFrame,
-      }),
-      frameRate: this.playerService.player.animations.WALK.frameRate,
-      repeat: this.playerService.player.animations.WALK.repeat,
-    });
-    this.anims.create({
-      key: this.playerService.player.animations.RUN.key,
-      frames: this.anims.generateFrameNumbers(this.playerService.player.animations.RUN.frames.key, {
-        start: this.playerService.player.animations.RUN.frames.startFrame,
-        end: this.playerService.player.animations.RUN.frames.endFrame,
-      }),
-      frameRate: this.playerService.player.animations.RUN.frameRate,
-      repeat: this.playerService.player.animations.RUN.repeat,
-    });
-    this.anims.create({
-      key: this.playerService.player.animations.JUMP.key,
-      frames: this.anims.generateFrameNumbers(this.playerService.player.animations.JUMP.frames.key, {
-        start: this.playerService.player.animations.JUMP.frames.startFrame,
-        end: this.playerService.player.animations.JUMP.frames.endFrame,
-      }),
-      frameRate: this.playerService.player.animations.JUMP.frameRate,
-      repeat: this.playerService.player.animations.JUMP.repeat,
-    });
+    for (let [key, value] of Object.entries(this.playerService.player.animations)) {      
+      this.anims.create({
+        key: value.key,
+        frames: this.anims.generateFrameNumbers(value.frames.key, {
+          start: value.frames.startFrame,
+          end: value.frames.endFrame,
+        }),
+        frameRate: value.frameRate,
+        repeat: value.repeat,
+      });      
+    }   
 
     this.player.play('IDLE');
     this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);
-    this.cameras.main.startFollow(this.player);
+    this.cameras.main.setBounds(0,0,3500,800)
+    this.cameras.main.startFollow(this.player, true, 1,1,0,+64);
+    
   }
   update() {
     this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);

@@ -121,7 +121,7 @@ export const availableCharacters: CharacterConfig[] = [
     body: {
       display: {
         frameWidth: 128,
-        frameHeight: 128,
+        frameHeight: 75,
         scale: 1,
       },
       health: 100,
