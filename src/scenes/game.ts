@@ -2,6 +2,7 @@ import { jumpProperties, movementKeys } from '../enums/keyboard';
 import { OurScenes } from '../enums/scenes';
 import { KeyboardService } from '../services/keyboard.service';
 import { PlayerService } from '../services/player.service';
+import { pickupAssets } from '../config/pickupAssetsConfig';
 
 export default class GameScene extends Phaser.Scene {
   // characters: Characters;
@@ -57,6 +58,21 @@ export default class GameScene extends Phaser.Scene {
         repeat: value.repeat,
       });      
     }   
+
+    const _pickupAssets = pickupAssets;
+    _pickupAssets.forEach(asset => {
+      const pickupAsset = this.physics.add.sprite(1500 / 3, 250, asset.key)
+        .setScale(asset.display.scale);    
+
+      this.physics.add.collider(pickupAsset, this.platforms); 
+      this.physics.add.collider(pickupAsset, this.player, () => {
+        pickupAsset.destroy();        
+        this.playerService.player.body.health += asset.actions.heal; 
+        if(this.playerService.player.body.health >= 100){
+          this.playerService.player.body.health = 100;
+        }
+      }); 
+    });
 
     this.player.play('IDLE');
     this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);

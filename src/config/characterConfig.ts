@@ -38,7 +38,7 @@ export const availableCharacters: CharacterConfig[] = [
         frameHeight: 48,
         scale: 1,
       },
-      health: 100,
+      health: 85,
     },
     animations: {
       SPAWN: {

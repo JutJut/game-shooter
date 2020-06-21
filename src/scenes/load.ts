@@ -1,4 +1,5 @@
 import { availableCharacters } from '../config/characterConfig';
+import { pickupAssets } from '../config/pickupAssetsConfig';
 import { OurScenes } from '../enums/scenes';
 
 export default class LoadScene extends Phaser.Scene {
@@ -14,7 +15,8 @@ export default class LoadScene extends Phaser.Scene {
   } 
 
   preload() {
-    const characters = availableCharacters;    
+    const characters = availableCharacters;  
+    const _pickupAssets = pickupAssets;
 
     // Game images and tiles
     this.backgroundImage = this.load.image('dark_forrest', './assets/backgrounds/background_darkforrest.jpg');     
@@ -29,6 +31,13 @@ export default class LoadScene extends Phaser.Scene {
         });
       }      
      });
+
+    _pickupAssets.forEach((pickupAssetConfig) => {
+      this.load.spritesheet(pickupAssetConfig.key, pickupAssetConfig.path, {
+        frameWidth: pickupAssetConfig.display.frameWidth,
+        frameHeight: pickupAssetConfig.display.frameHeight,
+      });
+    });
 
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');
