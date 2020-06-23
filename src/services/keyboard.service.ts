@@ -24,5 +24,5 @@ export class KeyboardService {
       checker = true;
     }
     return checker;
-  }
+  } 
 }
