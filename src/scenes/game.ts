@@ -2,6 +2,7 @@ import { movementKeys } from '../enums/keyboard';
 import { OurScenes } from '../enums/scenes';
 import { KeyboardService } from '../services/keyboard.service';
 import { PlayerService } from '../services/player.service';
+import { JutNet } from '../services/jutnet.service';
 
 export default class GameScene extends Phaser.Scene {
   backgroundImage: Phaser.GameObjects.Image;
@@ -12,7 +13,7 @@ export default class GameScene extends Phaser.Scene {
   didPressJump: boolean;
   keyboardService: KeyboardService;
   canJump: boolean;
-  jumpCounter: number;
+  jumpCounter: number;  
 
   constructor() {
     super({
@@ -21,6 +22,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    JutNet.letsPing()
+
     this.keyboardService = new KeyboardService(this.input);
     this.playerService = PlayerService.Instance;
 
