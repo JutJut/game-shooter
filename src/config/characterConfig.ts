@@ -88,7 +88,7 @@ export const availableCharacters: CharacterConfig[] = [
           startFrame: 0,
           endFrame: 5,
         },
-        frameRate: 10,
+        frameRate: 7,
         repeat: -1,
       },
     },

@@ -1,21 +1,20 @@
-import { jumpProperties, movementKeys } from '../enums/keyboard';
+import { movementKeys } from '../enums/keyboard';
 import { OurScenes } from '../enums/scenes';
 import { KeyboardService } from '../services/keyboard.service';
 import { PlayerService } from '../services/player.service';
 import { JutNet } from '../services/jutnet.service';
 
 export default class GameScene extends Phaser.Scene {
-  // characters: Characters;
   backgroundImage: Phaser.GameObjects.Image;
-  startText: Phaser.GameObjects.Text;
   platforms;
   player;
   playerService: PlayerService;
-  steammanIdle: Phaser.GameObjects.Sprite;
   keyboardInputs;
   didPressJump: boolean;
   keyboardService: KeyboardService;
-  
+  canJump: boolean;
+  jumpCounter: number;  
+
   constructor() {
     super({
       key: OurScenes.GAME,
@@ -61,56 +60,88 @@ export default class GameScene extends Phaser.Scene {
       });      
     }   
 
-    this.player.play('IDLE');
+    this.player.play(this.playerService.player.animations.IDLE.key);
     this.keyboardInputs = this.input.keyboard.addKeys(movementKeys);
     this.cameras.main.setBounds(0,0,3500,800)
-    this.cameras.main.startFollow(this.player, true, 1,1,0,+64);
-    
+    this.cameras.main.startFollow(this.player, true, 1,1,0,+64);   
+
+    this.jumpCounter = 0;
+    this.canJump = true;
   }
+
   update() {
-    this.didPressJump = Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W);
-
-    if (!this.keyboardService.IfAnyKeyIsDownValidation()) {
-      this.player.anims.play('IDLE', true);
-    }
-
-    if (this.player.body.touching.down) {
-      jumpProperties.JUMP_COUNTER = 0;
-      jumpProperties.CAN_JUMP = true;
-    }
+    // Player movement
+    this.didPressJump =  Phaser.Input.Keyboard.JustUp(this.keyboardInputs.W);    
+  
+    if (this.player.body.onFloor()) {      
+      this.jumpCounter = 0;
+      this.canJump = true;     
+      if(this.player.anims.getCurrentKey() === 'JUMP'){
+        this.player.play(this.playerService.player.animations.JUMP.key, false); 
+        this.player.play(this.playerService.player.animations.IDLE.key, true); 
+      }          
+    } 
 
     if (this.keyboardInputs.D.isDown) {
       this.player.flipX = false;
-      if (this.keyboardInputs.SHIFT.isDown) {
-        this.player.anims.play('RUN', true);
-        this.player.setVelocityX(160);
-      } else {
-        this.player.anims.play('WALK', true);
-        this.player.setVelocityX(120);
-      }
-    } else {
-      this.player.setVelocityX(0);
+      if (this.player.body.onFloor()) {            
+        if (this.keyboardInputs.SHIFT.isDown) {
+          this.player.body.setVelocityX(300);
+          this.player.play(this.playerService.player.animations.RUN.key, true);
+        }
+        else {
+          this.player.play(this.playerService.player.animations.WALK.key, true);         
+          this.player.body.setVelocityX(200);       
+        }
+      } 
+      else {
+        this.player.play(this.playerService.player.animations.JUMP.key, true);
+        this.player.body.setVelocityX(200);
+        if (this.keyboardInputs.SHIFT.isDown) {
+          this.player.body.setVelocityX(300);          
+        }      
+      }     
+    }  
+    
+    if(Phaser.Input.Keyboard.JustUp(this.keyboardInputs.D)){
+      this.player.body.setVelocityX(0);
+      this.player.play(this.playerService.player.animations.IDLE.key, true);
     }
 
     if (this.keyboardInputs.A.isDown) {
       this.player.flipX = true;
-      if (this.keyboardInputs.SHIFT.isDown) {
-        this.player.anims.play('RUN', true);
-        this.player.setVelocityX(-160);
-      } else {
-        this.player.anims.play('WALK', true);
-        this.player.setVelocityX(-120);
-      }
-    }
+      if (this.player.body.onFloor()) {            
+        if (this.keyboardInputs.SHIFT.isDown) {
+          this.player.body.setVelocityX(-300);
+          this.player.play(this.playerService.player.animations.RUN.key, true);
+        }
+        else {
+          this.player.play(this.playerService.player.animations.WALK.key, true);         
+          this.player.body.setVelocityX(-200);       
+        }
+      } 
+      else {
+        this.player.play(this.playerService.player.animations.JUMP.key, true);
+        this.player.body.setVelocityX(-200); 
+        if (this.keyboardInputs.SHIFT.isDown) {
+          this.player.body.setVelocityX(-300);          
+        }      
+      }     
+    }   
 
-    if (this.didPressJump && jumpProperties.CAN_JUMP) {
-      this.player.anims.play('JUMP', true);
-      this.player.setVelocityY(-350);
-      jumpProperties.JUMP_COUNTER++;
+    if(Phaser.Input.Keyboard.JustUp(this.keyboardInputs.A)){
+      this.player.body.setVelocityX(0);
+      this.player.play(this.playerService.player.animations.IDLE.key, true);
+    }    
 
-      if (jumpProperties.JUMP_COUNTER === 2) {
-        jumpProperties.CAN_JUMP = false;
-      }
-    }
+    if (Phaser.Input.Keyboard.JustDown(this.keyboardInputs.W) && this.canJump) {     
+      this.player.play(this.playerService.player.animations.JUMP.key, true);
+      this.player.setVelocityY(-300);
+      this.jumpCounter++;       
+      if (this.jumpCounter === 2) {
+        this.canJump = false;
+      }    
+    }      
+    //End of player movement     
   }
 }

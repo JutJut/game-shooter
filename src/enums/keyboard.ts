@@ -6,8 +6,3 @@ export const movementKeys = {
   SHIFT: 'SHIFT',
   SPACE: 'SPACE',
 };
-
-export const jumpProperties = {
-  CAN_JUMP: true,
-  JUMP_COUNTER: 0,
-};
