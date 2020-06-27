@@ -1,6 +1,6 @@
 import { availableCharacters } from '../config/characterConfig';
 import { OurScenes } from '../enums/scenes';
-import { JutNet } from '../services/jutnet.service'
+import { JutNet } from '../services/jutnet.service';
 
 export default class LoadScene extends Phaser.Scene {
   startText: Phaser.GameObjects.Text;
@@ -13,31 +13,33 @@ export default class LoadScene extends Phaser.Scene {
     super({
       key: OurScenes.LOAD,
     });
-  } 
+  }
 
   preload() {
-    new JutNet()
-    const characters = availableCharacters;    
+    new JutNet();
+    const characters = availableCharacters;
 
     // Game images and tiles
-    this.backgroundImage = this.load.image('dark_forrest', './assets/backgrounds/background_darkforrest.jpg');     
-    this.load.spritesheet('grass', './assets/tiles/grass_tile.png', { frameWidth: 100, frameHeight: 70 });
+    this.backgroundImage = this.load.image('dark_forrest', './assets/backgrounds/background_darkforrest.jpg');
 
     // Game characters
-    characters.forEach((characterConfig) => {     
-      for (let [key, value] of Object.entries(characterConfig.spriteSheets)) {
+    characters.forEach((characterConfig) => {
+      for (const [_, value] of Object.entries(characterConfig.spriteSheets)) {
         this.load.spritesheet(value.key, value.path, {
           frameWidth: characterConfig.body.display.frameWidth,
           frameHeight: characterConfig.body.display.frameHeight,
         });
-      }      
-     });
+      }
+    });
 
     // Menu assets
     this.load.image('button_start', './assets/Menu/Large-Buttons/Large-Buttons/PlayButton.png');
     this.load.image('button_settings', './assets/Menu/Large-Buttons/Large-Buttons/SettingsButton.png');
     this.load.image('button_continue', './assets/Menu/Large-Buttons/Large-Buttons/ContinueButton.png');
     this.load.image('button_audio', './assets/Menu/Square-Buttons/Square-Buttons/AudioSquareButton.png');
+
+    this.load.image('terrain', './assets/tiles/mainlevbuild.png');
+    this.load.tilemapTiledJSON('tilemap', './assets/maps/terrain.json');
 
     // LoadingBar
     const graphics = this.add.graphics();
