@@ -12,9 +12,10 @@
   },
   "linterOptions": {
     "exclude": [
-      "dis/*.js",
+      "dist/*.js",
       "config/**/*.js",
-      "node_modules/**/*.ts"
+      "node_modules/**/*.ts",
+      "public/assets/**/*.tsx"
     ]
   }
 }

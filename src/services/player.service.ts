@@ -1,6 +1,3 @@
-// TODO: defined player interface
-// export interface Player {}
-
 import { CharacterConfig } from '../config/characterConfig';
 
 export class PlayerService {
