@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel serve watch index.html",
     "deploy": "parcel build index.html --public-url ./ --no-source-maps",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect",
     "prettify": "prettier --write \"**/*.{ts,tsx}\""
   },
@@ -35,7 +35,7 @@
   "dependencies": {
     "http-server": "^0.12.3",
     "phaser": "^3.23.0",
-    "snyk": "^1.680.0"
+    "@snyk/protect": "latest"
   },
   "staticFiles": {
     "staticPath": "public",
