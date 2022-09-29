@@ -35,7 +35,7 @@
   "dependencies": {
     "http-server": "^0.12.3",
     "phaser": "^3.23.0",
-    "snyk": "^1.341.1"
+    "snyk": "^1.680.0"
   },
   "staticFiles": {
     "staticPath": "public",
