@@ -33,9 +33,9 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "http-server": "^0.12.3",
+    "http-server": "^0.13.0",
     "phaser": "^3.23.0",
-    "snyk": "^1.680.0"
+    "snyk": "^1.996.0"
   },
   "staticFiles": {
     "staticPath": "public",
