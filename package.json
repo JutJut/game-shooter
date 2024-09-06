@@ -33,8 +33,8 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "http-server": "^0.12.3",
-    "phaser": "^3.23.0",
+    "http-server": "^14.1.1",
+    "phaser": "^3.53.0",
     "snyk": "^1.680.0"
   },
   "staticFiles": {
